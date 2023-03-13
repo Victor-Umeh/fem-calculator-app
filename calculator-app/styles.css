@@ -1,0 +1,266 @@
+:root[data-theme="accent-1"] {
+  /* Backgrounds */
+  --main-bg: hsl(222, 26%, 31%);
+  --toggle-bg: hsl(223, 31%, 20%);
+  --screen-bg: hsl(224, 36%, 15%);
+
+  /* Keys */
+  --key-bg: hsl(225, 21%, 49%);
+  --key-shadow: hsl(224, 28%, 35%);
+  --red-key: hsl(6, 63%, 50%);
+  --red-key-shadow: hsl(6, 70%, 34%);
+  --grey-key: hsl(30, 25%, 89%);
+  --grey-key-shadow: hsl(28, 16%, 65%);
+  /* Text */
+  --text-primary: hsl(221, 14%, 31%);
+  --white-btn: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 100%);
+
+  /* Buttons Shadow */
+  --shadow: 0 5px 0 var(--grey-key-shadow);
+  --shadow-active: 0 3px 0 var(--grey-key-shadow);
+}
+:root[data-theme="accent-2"] {
+  /* Backgrounds */
+  --main-bg: hsl(0, 0%, 90%);
+  --toggle-bg: hsl(0, 5%, 81%);
+  --screen-bg: hsl(0, 0%, 93%);
+
+  /* Keys */
+  --key-bg: hsl(185, 42%, 37%);
+  --key-shadow: hsl(185, 58%, 25%);
+  --red-key: hsl(25, 98%, 40%);
+  --red-key-shadow: hsl(25, 99%, 27%);
+  --grey-key: hsl(45, 7%, 89%);
+  --grey-key-shadow: hsl(35, 11%, 61%);
+  /* Text */
+  --text-primary: hsl(60, 10%, 19%);
+  --white-btn: hsl(0, 0%, 100%);
+  --white: var(--text-primary);
+
+  /* Buttons Shadow */
+  --shadow: 0 5px 0 var(--grey-key-shadow);
+  --shadow-active: 0 3px 0 var(--grey-key-shadow);
+}
+html {
+  font-size: 62.5%;
+}
+* {
+  font-size: 1.6rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding: 2em 0;
+  background: var(--main-bg);
+  font-family: "League Spartan";
+}
+
+.calc__container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+.calc__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  color: var(--white);
+}
+.calc__head-text {
+  font-size: 3.2rem;
+  line-height: 0;
+}
+.theme__switch-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 2em;
+}
+.theme__switcher {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.theme__tag {
+  font-size: 1.3rem;
+  color: var(--white);
+}
+.theme__number {
+  letter-spacing: 1.6rem;
+  margin-left: auto;
+}
+.screen {
+  all: unset;
+  position: relative;
+  font-size: 4.5rem;
+  color: var(--white);
+  text-align: right;
+  padding: 3rem;
+  width: 100%;
+  box-sizing: inherit;
+  height: 9rem;
+  display: block;
+  background: var(--screen-bg);
+  margin-top: 3.6rem;
+  border-radius: 1rem;
+}
+.calc__btns {
+  display: grid;
+  margin-top: 2.4rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "b-7 b-8 b-9 del"
+    "b-4 b-5 b-6 plus"
+    "b-1 b-2 b-3 minus"
+    "dt b-0 div multi"
+    "reset reset  eval eval";
+  grid-auto-rows: 5.7rem;
+  background: var(--toggle-bg);
+  width: 100%;
+  border-radius: 1rem;
+  gap: clamp(1.2rem, 3.3vw, 2rem);
+  padding: 2rem;
+}
+.calc__btns :is(button) {
+  all: unset;
+  font-size: 3.2rem;
+  background: var(--grey-key);
+  text-align: center;
+  color: var(--text-primary);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.calc__btns :is(button.del, button.reset) {
+  box-shadow: 0 4.5px 0 var(--key-shadow);
+  color: var(--white-btn);
+}
+.calc__btns :is(button.del, button.reset):active {
+  box-shadow: 0 2px 0 var(--key-shadow);
+  opacity: 0.8;
+  transform: scale(0.99);
+}
+.calc__btns :is(button.eval) {
+  color: var(--white-btn);
+  box-shadow: 0 4.5px 0 var(--red-key-shadow);
+  font-size: 1rem;
+}
+.calc__btns :is(button.eval):active {
+  box-shadow: 0 2px 0 var(--red-key-shadow);
+  opacity: 0.8;
+  transform: scale(0.99);
+}
+.calc__btns :is(button):not(button.del, button.reset, button.eval) {
+  box-shadow: 0 4.5px 0 var(--grey-key-shadow);
+}
+.calc__btns :is(button):not(button.del, button.reset, button.eval):active {
+  box-shadow: 0 2px 0 var(--grey-key-shadow);
+  opacity: 0.8;
+  transform: scale(0.99);
+}
+button.del,
+button.reset {
+  font-size: 2rem;
+  background: var(--key-bg);
+  color: var(--white);
+}
+button.eval {
+  background: var(--red-key);
+  color: var(--white);
+}
+button.multi {
+  font-size: 2rem;
+}
+button.btn-9 {
+  grid-area: b-9;
+}
+button.btn-8 {
+  grid-area: b-8;
+}
+button.btn-7 {
+  grid-area: b-7;
+}
+button.btn-6 {
+  grid-area: b-6;
+}
+button.btn-5 {
+  grid-area: b-5;
+}
+button.btn-4 {
+  grid-area: b-4;
+}
+button.btn-3 {
+  grid-area: b-3;
+}
+button.btn-2 {
+  grid-area: b-2;
+}
+button.btn-1 {
+  grid-area: b-1;
+}
+button.btn-0 {
+  grid-area: b-0;
+}
+button.eval {
+  grid-area: eval;
+}
+button.reset {
+  grid-area: reset;
+}
+button.del {
+  grid-area: del;
+}
+button.add {
+  grid-area: plus;
+}
+button.sub {
+  grid-area: minus;
+}
+button.multi {
+  grid-area: multi;
+}
+button.div {
+  grid-area: div;
+}
+button.dot {
+  grid-area: dt;
+}
+/* TOGGLE BTN */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider.round {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  border-radius: 34px;
+  background-color: var(--toggle-bg);
+  transition: 0.4s;
+}
+.slider.round:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  background-color: var(--red-key);
+  transition: 0.4s;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
